@@ -1,0 +1,1125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mystic Pages | Fantasy Storybook</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #100d20;
+  --panel: #1b1630;
+  --panel2: #251d3e;
+  --gold: #f2c879;
+  --purple: #a98bff;
+  --text: #f8f3ff;
+  --muted: #b7adc9;
+  --border: #41335e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background .3s, color .3s;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+header {
+  min-height: 390px;
+  padding: 25px 7% 55px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, #100d20f5, #100d20a8),
+    url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1800')
+    center/cover;
+  border-bottom: 1px solid var(--border);
+}
+
+nav {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo {
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  background: #ffffff12;
+  border: 1px solid #ffffff35;
+  color: white;
+  padding: 9px 14px;
+  border-radius: 20px;
+}
+
+.nav-btn:hover {
+  background: var(--purple);
+  color: #100d20;
+}
+
+.hero {
+  max-width: 1200px;
+  margin: 75px auto 0;
+}
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(35px, 6vw, 66px);
+  line-height: 1.15;
+  max-width: 750px;
+  margin: 14px 0;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero p {
+  max-width: 580px;
+  color: #d4cce5;
+  line-height: 1.9;
+}
+
+.primary-btn {
+  background: linear-gradient(120deg, #f2c879, #e8a9df);
+  color: #21152c;
+  border: none;
+  border-radius: 9px;
+  padding: 13px 21px;
+  font-weight: 700;
+  margin-top: 12px;
+  transition: transform .2s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+}
+
+.container {
+  max-width: 1200px;
+  padding: 35px 22px;
+  margin: auto;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  font-family: 'Cinzel', serif;
+  margin: 0;
+  font-size: 27px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.tools {
+  display: grid;
+  grid-template-columns: 1fr 210px;
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.tools input,
+.tools select {
+  width: 100%;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  outline: none;
+}
+
+.tools input:focus,
+.tools select:focus {
+  border-color: var(--gold);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.story-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform .25s, border-color .25s;
+  animation: appear .5s ease both;
+}
+
+.story-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--gold);
+}
+
+.cover {
+  height: 230px;
+  position: relative;
+  overflow: hidden;
+  background: var(--panel2);
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s;
+}
+
+.story-card:hover .cover img {
+  transform: scale(1.07);
+}
+
+.cover-number {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #100d20d9;
+  color: var(--gold);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+
+.card-body {
+  padding: 17px;
+}
+
+.genre {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--gold);
+  border: 1px solid #f2c87955;
+  border-radius: 20px;
+  padding: 4px 9px;
+}
+
+.card-body h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 12px 0 8px;
+}
+
+.card-body p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  min-height: 66px;
+}
+
+.read-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: var(--panel2);
+  color: var(--gold);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.read-btn:hover {
+  background: var(--gold);
+  color: #21152c;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 15px;
+  color: var(--muted);
+}
+
+/* READER */
+
+#reader {
+  display: none;
+}
+
+.reader-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.secondary-btn {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.book {
+  max-width: 850px;
+  margin: 0 auto;
+  background: #211a36;
+  border: 1px solid #57466d;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 15px 50px #0005;
+}
+
+.book-cover {
+  min-height: 350px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 35px;
+  background-size: cover;
+  background-position: center;
+}
+
+.book-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #100d20a8;
+}
+
+.book-cover > * {
+  position: relative;
+}
+
+.book-cover h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 5vw, 45px);
+  margin: 20px 0;
+}
+
+.book-cover .ornament {
+  color: var(--gold);
+  font-size: 38px;
+}
+
+.book-content {
+  padding: clamp(22px, 5vw, 55px);
+  color: #eee5f8;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  line-height: 2.1;
+}
+
+.book-content h3 {
+  color: var(--gold);
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  margin-bottom: 30px;
+}
+
+.book-content p {
+  white-space: pre-line;
+}
+
+.book-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 25px;
+  border-top: 1px solid #57466d;
+}
+
+#fontSize {
+  accent-color: var(--gold);
+  width: 100px;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 30px 15px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 2;
+}
+
+footer strong {
+  color: var(--gold);
+}
+
+.hidden {
+  display: none !important;
+}
+
+body.light {
+  --bg: #f4efff;
+  --panel: #ffffff;
+  --panel2: #e9dfff;
+  --text: #241a38;
+  --muted: #685b7b;
+  --border: #d8c9ef;
+}
+
+body.light .book {
+  background: #fffaf0;
+}
+
+body.light .book-content {
+  color: #342644;
+}
+
+body.light .secondary-btn {
+  color: var(--text);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1000px) {
+  .story-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  header {
+    padding: 20px 5% 45px;
+  }
+
+  .hero {
+    margin-top: 55px;
+  }
+
+  .story-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .cover {
+    height: 175px;
+  }
+
+  .card-body {
+    padding: 12px;
+  }
+
+  .card-body h3 {
+    font-size: 14px;
+  }
+
+  .card-body p {
+    font-size: 11px;
+  }
+
+  .tools {
+    grid-template-columns: 1fr;
+  }
+
+  .book-cover {
+    min-height: 280px;
+  }
+
+  .book-content {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header id="top">
+  <nav>
+    <div class="logo">✦ MYSTIC PAGES</div>
+
+    <div class="nav-actions">
+      <button class="nav-btn" onclick="goHome()">Home</button>
+      <button class="nav-btn" onclick="toggleTheme()" id="themeBtn">
+        ☀ Light
+      </button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="eyebrow">A WORLD BEYOND IMAGINATION</div>
+    <h1>Every page hides <span>a new world.</span></h1>
+    <p>
+      Enter forgotten kingdoms, discover ancient magic, and follow
+      brave heroes through stories written among the stars.
+      Your next adventure begins here.
+    </p>
+    <button class="primary-btn" onclick="browseStories()">
+      Explore the Stories ✦
+    </button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section id="library">
+    <div class="section-heading">
+      <div>
+        <h2>✦ The Story Library</h2>
+        <p>Original adventures. One chapter per story.</p>
+      </div>
+      <p id="storyCount"></p>
+    </div>
+
+    <div class="tools">
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="🔍 Search title, character, or genre..."
+        oninput="renderStories()"
+      >
+
+      <select id="genreFilter" onchange="renderStories()">
+        <option value="All">All Genres</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Magic">Magic</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Fairytale">Fairytale</option>
+      </select>
+    </div>
+
+    <div id="storyGrid" class="story-grid"></div>
+  </section>
+
+  <section id="reader">
+    <div class="reader-top">
+      <button class="secondary-btn" onclick="goHome()">
+        ← Back to Library
+      </button>
+
+      <button class="secondary-btn" onclick="window.print()">
+        🖨 Print Story
+      </button>
+    </div>
+
+    <article class="book">
+      <div class="book-cover" id="bookCover">
+        <div class="ornament">✦ ❖ ✦</div>
+        <span class="eyebrow" id="bookGenre"></span>
+        <h2 id="bookTitle"></h2>
+        <p>AN ORIGINAL MYSTIC PAGES STORY</p>
+      </div>
+
+      <div class="book-content">
+        <h3 id="chapterTitle">Chapter One</h3>
+        <div id="bookText"></div>
+      </div>
+
+      <div class="book-footer">
+        <span id="pageInfo">Chapter 1 of 1</span>
+        <label>
+          Text size
+          <input
+            id="fontSize"
+            type="range"
+            min="14"
+            max="25"
+            value="18"
+            oninput="changeFontSize(this.value)"
+          >
+        </label>
+        <button class="secondary-btn" onclick="goHome()">
+          Finish Reading ✓
+        </button>
+      </div>
+    </article>
+  </section>
+
+</main>
+
+<footer>
+  <strong>✦ MYSTIC PAGES ✦</strong>
+  <div>A universe of stories, waiting to be discovered.</div>
+  <div>Original Storybook Website · 2026</div>
+</footer>
+
+<script>
+const stories = [
+{
+  title: "The Kingdom Beyond the Stars",
+  genre: "Fantasy",
+  symbol: "🌌",
+  image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=900",
+  summary: "A village girl discovers a kingdom hidden beyond the night sky.",
+  chapter: "The Door in the Sky",
+  content: `Luna had always believed that the stars were tiny windows into another world. Every evening, she climbed the hill behind her village and watched them shimmer above the mountains.
+
+One night, a silver star fell from the sky and landed in the palm of her hand. Instead of burning, it unfolded into a little golden key.
+
+A voice whispered through the wind. "The kingdom is waiting for its lost light."
+
+Suddenly, a doorway appeared between two ancient trees. Beyond it stretched a magnificent kingdom floating among the stars. Crystal bridges connected castles, rivers flowed with blue light, and silver birds circled towers made of clouds.
+
+At the center of the kingdom stood a darkened palace. Its royal star had disappeared, and without it, the entire kingdom was slowly losing its light.
+
+Luna placed the golden key inside the palace door. The lock opened, revealing a tiny star sleeping inside a glass lantern.
+
+She remembered what her grandmother always told her: even the smallest light could guide someone home.
+
+Luna lifted the lantern and sang the lullaby her grandmother had taught her. The star awakened, rising above the palace and filling the sky with golden light.
+
+The kingdom's bells rang for the first time in a hundred years.
+
+Before Luna returned home, the star placed a small silver mark on her hand.
+
+"Whenever you feel lost," it whispered, "look up. Your story is written among us."
+
+At sunrise, Luna woke on the hill, the golden key beside her.
+
+Far above, one star shone brighter than all the others.`
+},
+{
+  title: "The Last Dragon of Eldoria",
+  genre: "Adventure",
+  symbol: "🐉",
+  image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=900",
+  summary: "A young mapmaker follows an ancient trail to find a forgotten dragon.",
+  chapter: "The Mountain of Fire",
+  content: `At seventeen, Rowan had already drawn maps of every road in Eldoria. Yet one place remained blank: the Ashen Mountain, where old legends claimed the last dragon slept.
+
+When Rowan discovered a burned map inside his father's workshop, he found a message written beneath it.
+
+"Find the dragon before the mountain forgets its fire."
+
+Carrying a compass and a bag of supplies, Rowan followed the trail through black forests and across fields of volcanic stone.
+
+At the summit, he found a vast cavern. Two amber eyes opened in the darkness.
+
+The dragon was enormous, with scales like dark emeralds. But its wings were covered in dust, and the fire inside its chest had almost disappeared.
+
+"I have guarded this mountain for centuries," the dragon said. "Now the heart of the mountain is cold."
+
+Rowan examined his map and noticed a narrow passage beneath the cavern floor. Inside, they discovered a crystal buried beneath fallen rocks.
+
+Together, they lifted the crystal into the mountain's central chamber.
+
+A warm golden glow spread through the stone. The ground trembled, and glowing rivers appeared along the walls.
+
+The dragon stretched its wings. Sparks danced between its scales.
+
+"You came looking for a legend," it said. "But you gave the legend a future."
+
+Rowan returned to Eldoria with a new map. This time, he marked the Ashen Mountain with a small green dragon.
+
+And every night afterward, villagers saw a bright flame dancing above the distant summit.`
+},
+{
+  title: "The Clock That Stole Tomorrow",
+  genre: "Mystery",
+  symbol: "⏳",
+  image: "https://images.unsplash.com/photo-1501139083538-0139583c060f?w=900",
+  summary: "A curious student discovers why every clock in town stops at midnight.",
+  chapter: "Eleven Fifty-Nine",
+  content: `Every clock in Bellweather stopped at eleven fifty-nine. The clocks in houses, the station, and even the school all showed the same minute.
+
+Mara was the only person who noticed something stranger: every morning, someone in town forgot a small piece of yesterday.
+
+A baker forgot a recipe. A musician forgot a melody. Her own brother forgot the ending of his favorite story.
+
+Searching the abandoned clock tower, Mara discovered a golden clock with thirteen numbers.
+
+A note lay beneath it: "Tomorrow belongs to those who remember today."
+
+She realized the clock was collecting people's memories to power its missing thirteenth hour.
+
+Mara opened her notebook and read aloud the memories she had recorded: the baker's recipe, the musician's melody, her brother's story, and hundreds of little moments from the town.
+
+With each memory, a golden gear began to turn.
+
+Finally, the thirteenth number appeared on the clock face. Its hands moved beyond midnight for the first time in decades.
+
+Across Bellweather, clocks began ticking again.
+
+The townspeople remembered their missing moments, and the morning arrived with a brilliant orange sunrise.
+
+Mara closed her notebook and smiled.
+
+Time, she understood, was not something to collect.
+
+It was something to live.`
+},
+{
+  title: "The Library of Forgotten Dreams",
+  genre: "Magic",
+  symbol: "📚",
+  image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900",
+  summary: "A quiet librarian finds a book containing dreams people have forgotten.",
+  chapter: "The Book Without a Name",
+  content: `In the oldest corner of a forgotten city stood a library with no sign above its door.
+
+Nico entered on a rainy afternoon and found a book with no title. Its pages were completely blank until he whispered his name.
+
+Words appeared.
+
+The first page described a little girl who wanted to become an artist. The second described an old sailor who dreamed of visiting the mountains. Every page held a dream that someone had abandoned.
+
+A librarian in a midnight-blue robe approached him.
+
+"These dreams disappear when people stop believing they matter," she explained.
+
+Nico turned another page and found his own dream: he had once wanted to build a school where every child could learn to read.
+
+He had forgotten that dream while worrying about all the things he could not do.
+
+The librarian handed him a small golden bookmark.
+
+"You cannot return every dream to its owner," she said. "But you can help one person begin again."
+
+The next morning, Nico visited the community center. He gathered old books, invited volunteers, and opened a small reading room.
+
+Soon, children filled the room with questions, drawings, and stories of their own.
+
+That night, Nico returned to the mysterious library.
+
+His page was no longer blank. Beneath his dream, a new sentence had appeared.
+
+"Some dreams return when we give them a place to grow."`
+},
+{
+  title: "The Girl Who Spoke to the Sea",
+  genre: "Fantasy",
+  symbol: "🌊",
+  image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=900",
+  summary: "A seaside girl hears a mysterious song coming from beneath the waves.",
+  chapter: "The Song Beneath the Waves",
+  content: `Every evening, Amara sat beside the shore and listened to the ocean.
+
+One evening, she heard a melody rising from beneath the waves. It was beautiful but filled with sadness.
+
+The next morning, hundreds of tiny shells had washed onto the beach. Each shell held a faint blue glow.
+
+Amara followed the glowing shells to a hidden cove. There she found an ancient stone covered in symbols.
+
+When she touched it, the ocean spoke.
+
+"Our coral garden is losing its light. The sea creatures have forgotten its song."
+
+Amara asked the village children to help clean the shore. They collected litter, carefully removed tangled fishing lines, and learned how to protect the nearby marine life.
+
+Days passed. The water grew clearer, and small fish returned to the cove.
+
+One evening, the blue shells began to shine again.
+
+A gentle wave carried a pearl to Amara's feet. Inside it, the ocean's melody played softly.
+
+Amara smiled and placed the pearl beside the ancient stone.
+
+From that day on, she taught visitors to respect the sea. And whenever the tide came in, the waves sang a little louder.
+
+The ocean had not needed a queen or a hero.
+
+It had needed someone willing to listen.`
+},
+{
+  title: "The Robot Who Wanted to Dream",
+  genre: "Science Fiction",
+  symbol: "🤖",
+  image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900",
+  summary: "A little robot explores the meaning of dreams on a distant planet.",
+  chapter: "A Heart Made of Stars",
+  content: `On the distant planet of Nova-7, a small robot named Piko repaired machines and counted the stars every night.
+
+Piko did not need sleep, but it was fascinated by the dreams described by the human scientists.
+
+"What is a dream?" it asked Dr. Elena.
+
+"A possibility you imagine before it becomes real," she answered.
+
+Piko decided to create a dream of its own. It wanted to grow a garden beneath the planet's red sky.
+
+The scientists laughed kindly. Nothing had ever grown in Nova-7's dry soil.
+
+Still, Piko collected discarded containers, saved water from the research station, and tested seeds from Earth.
+
+For weeks, nothing happened.
+
+Then, one morning, a tiny green leaf appeared.
+
+Piko's sensors recorded the discovery, but the robot did something unexpected: it played a cheerful tune that it had composed itself.
+
+The scientists gathered around the little plant.
+
+Together, they built a greenhouse and planted hundreds of seeds.
+
+Soon, colorful flowers bloomed beneath the red sky.
+
+Piko finally understood that a dream was not simply a picture stored in a computer.
+
+It was an idea worth working toward, even when success seemed impossible.
+
+And every night, Piko counted the stars above its garden, imagining what might grow next.`
+},
+{
+  title: "The Prince of Paper Wings",
+  genre: "Fairytale",
+  symbol: "🕊️",
+  image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900",
+  summary: "A young prince discovers that courage can be folded from ordinary paper.",
+  chapter: "The Wind's Secret",
+  content: `Prince Elian lived in a kingdom where everyone was expected to be brave. Knights trained with swords, guards rode magnificent horses, and royal children learned the art of battle.
+
+Elian preferred drawing and folding paper birds.
+
+One day, a powerful wind swept through the kingdom and scattered the royal messages across the mountains.
+
+Without the messages, neighboring villages would not know when the winter supplies were arriving.
+
+Elian folded his largest paper bird and attached a message to its wings.
+
+He released it into the wind.
+
+The bird soared above the rooftops, crossed the river, and followed the mountain breeze to the distant village.
+
+Inspired, the villagers folded their own paper birds and sent messages back.
+
+Soon, the whole kingdom was connected by hundreds of colorful paper wings.
+
+The king watched from his balcony as the birds danced through the air.
+
+"I thought bravery needed a sword," he told his son.
+
+Elian smiled. "Sometimes it only needs an idea."
+
+That winter, the kingdom delivered every supply on time.
+
+And above the royal palace, one golden paper bird remained on display as a reminder that courage could take many forms.`
+},
+{
+  title: "The Secret Garden of Shadows",
+  genre: "Mystery",
+  symbol: "🌿",
+  image: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=900",
+  summary: "Two friends uncover the truth about a garden that appears only at dusk.",
+  chapter: "The Gate at Dusk",
+  content: `Every sunset, a strange shadow appeared on the wall behind the school.
+
+Tess and her friend Milo followed it one evening and discovered a small iron gate hidden beneath climbing vines.
+
+Beyond the gate was a garden filled with silver leaves and flowers that glowed in the fading light.
+
+At the center stood a stone fountain with an inscription: "Return what was lost, and the garden will remember."
+
+The friends searched the garden and found old nameplates scattered among the roots.
+
+They belonged to students who had planted the garden many years earlier.
+
+The garden had been forgotten when the school was rebuilt.
+
+Tess and Milo brought the nameplates to their teacher. Together, the students researched the school's history and learned about the children who had cared for the garden.
+
+The following weekend, they cleaned the paths, replanted flowers, and placed every nameplate beside its original tree.
+
+At sunset, the silver leaves shimmered brighter than ever.
+
+The iron gate no longer appeared mysterious. It stood open for everyone.
+
+Tess understood the secret at last.
+
+The garden had not been waiting for a treasure.
+
+It had been waiting for someone to remember it.`
+},
+{
+  title: "The Phoenix and the Frozen Sun",
+  genre: "Fantasy",
+  symbol: "🔥",
+  image: "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?w=900",
+  summary: "An apprentice discovers a legendary bird in a kingdom trapped in winter.",
+  chapter: "The First Flame",
+  content: `For a hundred days, winter covered the kingdom of Solara. The sun remained pale behind thick clouds, and the royal gardens froze beneath layers of snow.
+
+An apprentice named Sera discovered an ancient feather inside the palace library. It glowed orange whenever she held it near a candle.
+
+The oldest book in the library described a phoenix that could restore warmth to a sleeping sun.
+
+Following the book's directions, Sera climbed the tallest mountain and entered a cave of blue ice.
+
+Inside lay a golden bird, its wings folded around a tiny flame.
+
+"The world has forgotten how to care for its light," the phoenix whispered.
+
+Sera thought of her village. People had stopped sharing food, helping neighbors, and gathering together because everyone feared the endless winter.
+
+She returned home and began organizing small acts of kindness. Families shared warm meals, children carried firewood, and neighbors repaired damaged houses together.
+
+With every act, the feather in Sera's pocket grew warmer.
+
+At last, a golden beam pierced the clouds.
+
+The phoenix rose above the mountain, spreading its wings across the sky. The frozen sun awakened, filling Solara with brilliant morning light.
+
+Sera kept one tiny ember in a glass lantern.
+
+It reminded her that warmth could begin with a single person, long before the whole world noticed.`
+},
+{
+  title: "The Map of Invisible Roads",
+  genre: "Adventure",
+  symbol: "🗺️",
+  image: "https://images.unsplash.com/photo-1466442929976-97f336a657be?w=900",
+  summary: "An apprentice cartographer finds roads that lead to places missing from every map.",
+  chapter: "Where the Roads Begin",
+  content: `Kai inherited a map shop from his grandfather, but the most valuable map in the shop appeared empty.
+
+One night, moonlight touched its surface and revealed a network of glowing roads.
+
+The first road led to a village that had vanished from every modern map. The second ended at a bridge suspended between two mountains.
+
+Kai followed the roads, recording every landmark and helping the travelers he met along the way.
+
+At the end of the final road, he discovered a small town where people had been waiting for news from the outside world for many years.
+
+Their bridge had collapsed, and no one knew how to reach them.
+
+Kai returned with engineers and supplies. Together, they rebuilt the bridge and connected the town to the surrounding villages.
+
+When he opened the mysterious map again, its glowing roads had multiplied.
+
+His grandfather's final note appeared at the bottom.
+
+"A map is not just a picture of where places are. It is a promise that someone can find their way."
+
+Kai placed the map in the shop window.
+
+From then on, he made maps for people who needed a path forward.
+
+And every new journey added another road to the invisible world.`
+}
+];
+
+const grid = document.getElementById("storyGrid");
+const library = document.getElementById("library");
+const reader = document.getElementById("reader");
+
+function renderStories() {
+  const query = document
+    .getElementById("searchInput")
+    .value.toLowerCase()
+    .trim();
+
+  const genre = document.getElementById("genreFilter").value;
+
+  const filtered = stories
+    .map((story, index) => ({ ...story, index }))
+    .filter(story => {
+      const matchesQuery =
+        story.title.toLowerCase().includes(query) ||
+        story.genre.toLowerCase().includes(query) ||
+        story.summary.toLowerCase().includes(query) ||
+        story.content.toLowerCase().includes(query);
+
+      const matchesGenre =
+        genre === "All" || story.genre === genre;
+
+      return matchesQuery && matchesGenre;
+    });
+
+  grid.innerHTML = "";
+
+  document.getElementById("storyCount").textContent =
+    filtered.length + (filtered.length === 1
+      ? " story found"
+      : " stories found");
+
+  if (filtered.length === 0) {
+    grid.innerHTML =
+      '<div class="empty">✨ No stories found. Try another search.</div>';
+    return;
+  }
+
+  filtered.forEach(story => {
+    const card = document.createElement("article");
+    card.className = "story-card";
+
+    const cover = document.createElement("div");
+    cover.className = "cover";
+
+    const img = document.createElement("img");
+    img.src = story.image;
+    img.alt = story.title + " cover";
+    img.loading = "lazy";
+
+    img.onerror = function() {
+      this.style.display = "none";
+      cover.style.background =
+        "linear-gradient(135deg,#35265d,#111020)";
+      cover.insertAdjacentHTML(
+        "beforeend",
+        '<div style="font-size:65px;text-align:center;padding-top:65px">' +
+        story.symbol + '</div>'
+      );
+    };
+
+    const number = document.createElement("span");
+    number.className = "cover-number";
+    number.textContent = "STORY " +
+      String(story.index + 1).padStart(2, "0");
+
+    cover.append(img, number);
+
+    const body = document.createElement("div");
+    body.className = "card-body";
+
+    const genre = document.createElement("span");
+    genre.className = "genre";
+    genre.textContent = story.genre;
+
+    const title = document.createElement("h3");
+    title.textContent = story.title;
+
+    const summary = document.createElement("p");
+    summary.textContent = story.summary;
+
+    const btn = document.createElement("button");
+    btn.className = "read-btn";
+    btn.textContent = "Read This Story →";
+    btn.onclick = () => readStory(story.index);
+
+    body.append(genre, title, summary, btn);
+    card.append(cover, body);
+    grid.appendChild(card);
+  });
+}
+
+function readStory(index) {
+  const story = stories[index];
+  if (!story) return;
+
+  library.classList.add("hidden");
+  reader.style.display = "block";
+
+  document.getElementById("bookTitle").textContent = story.title;
+  document.getElementById("bookGenre").textContent = story.genre;
+  document.getElementById("chapterTitle").textContent =
+    "Chapter One: " + story.chapter;
+  document.getElementById("pageInfo").textContent =
+    "Story " + (index + 1) + " · One Complete Chapter";
+
+  const cover = document.getElementById("bookCover");
+  cover.style.backgroundImage =
+    "linear-gradient(#100d2070,#100d20bd),url('" +
+    story.image + "')";
+
+  const bookText = document.getElementById("bookText");
+  bookText.innerHTML = "";
+
+  story.content.split("\n\n").forEach(paragraph => {
+    const p = document.createElement("p");
+    p.textContent = paragraph;
+    bookText.appendChild(p);
+  });
+
+  document.getElementById("fontSize").value = 18;
+  changeFontSize(18);
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function goHome() {
+  reader.style.display = "none";
+  library.classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function browseStories() {
+  goHome();
+  library.scrollIntoView({ behavior: "smooth" });
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("light");
+
+  document.getElementById("themeBtn").textContent =
+    document.body.classList.contains("light")
+      ? "🌙 Dark"
+      : "☀ Light";
+}
+
+function changeFontSize(value) {
+  document.getElementById("bookText").style.fontSize =
+    value + "px";
+}
+
+renderStories();
+</script>
+
+</body>
+</html>
